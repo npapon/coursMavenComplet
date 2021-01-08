@@ -15,7 +15,7 @@
  <!--version version du projet -->
  <!-- packaging : type de packaging devant être généré par Maven (jar, war, ear...) -->
   <groupId>fr.papounworld</groupId>
-  <artifactId>unProjetMaven2</artifactId>
+  <artifactId>projetMaven2</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -40,6 +40,42 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+
+<!-- B. BUILD  -->
+ <build>
+        <!-- Gestion des plugins (version) -->
+        <pluginManagement>
+            <plugins>
+                <!-- Plugin responsable de la génération du fichier JAR -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <!-- Création du Manifest pour la définition de la classe Main -->
+                        <manifest>
+                            <mainClass>fr.papounworld.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+        
+           <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 
   <dependencies>
