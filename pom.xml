@@ -1,89 +1,116 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-<!-- A. DONNEES GENERALES DU PROJET  -->
+	<!-- A. DONNEES GENERALES DU PROJET -->
 
-<!-- a) coordonnées du projet MAVEN -->
+	<!-- a) coordonnées du projet MAVEN -->
 
-<!--  groupId : identifiant de l'organisation gérant le projet.
- Cet identifiant reprend la notation des packages Java. 
- En général, celui-ci correspond au package de base de l'application, 
- mais ce n'est pas obligatoire. -->
- 
- <!--artefactIf nom du projet -->
- <!--version version du projet -->
- <!-- packaging : type de packaging devant être généré par Maven (jar, war, ear...) -->
-  <groupId>fr.papounworld</groupId>
-  <artifactId>projetMaven2</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<!-- groupId : identifiant de l'organisation gérant le projet. Cet identifiant 
+		reprend la notation des packages Java. En général, celui-ci correspond au 
+		package de base de l'application, mais ce n'est pas obligatoire. -->
 
-<!-- b) informations générales du projet -->
-  <name>unProjetMaven</name>
-  <description>un projet pour comprendre Maven</description>
-  <url>http://www.papounworld.fr/unprojetmaven</url>
-  
-  <!-- c) organisation -->
-  
-<organization>
+	<!--artefactIf nom du projet -->
+	<!--version version du projet -->
+	<!-- packaging : type de packaging devant être généré par Maven (jar, war, 
+		ear...) -->
+	<groupId>fr.papounworld</groupId>
+	<artifactId>projetMaven2</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-<name>Canal +</name>
-<url>www.canalplus.fr</url>
+	<!-- b) informations générales du projet -->
+	<name>unProjetMaven</name>
+	<description>un projet pour comprendre Maven</description>
+	<url>http://www.papounworld.fr/unprojetmaven</url>
 
-</organization>
+	<!-- c) organisation -->
 
-  <!-- d) licences -->
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
+	<organization>
 
-<!-- B. BUILD  -->
- <build>
-        <!-- Gestion des plugins (version) -->
-        <pluginManagement>
-            <plugins>
-                <!-- Plugin responsable de la génération du fichier JAR -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <!-- Création du Manifest pour la définition de la classe Main -->
-                        <manifest>
-                            <mainClass>fr.papounworld.App</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-        </plugins>
-        
-           <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
+		<name>Canal +</name>
+		<url>www.canalplus.fr</url>
+
+	</organization>
+
+	<!-- d) licences -->
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<profiles>
+		<profile>
+			<id>test</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/conf-test</directory>
+					<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/conf-prod</directory>
+					<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
+	<!-- B. BUILD -->
+	<build>
+		<!-- Gestion des plugins (version) -->
+		<pluginManagement>
+			<plugins>
+				<!-- Plugin responsable de la génération du fichier JAR -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!-- Création du Manifest pour la définition de la classe Main -->
+						<manifest>
+							<mainClass>fr.papounworld.App</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+<!--  
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		-->
+	</build>
 
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>

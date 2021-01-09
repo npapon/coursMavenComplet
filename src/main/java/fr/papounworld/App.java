@@ -17,7 +17,7 @@ public class App
         Properties proprietes = new Properties();
         InputStream inputStream = null;
         try {
-        inputStream = App.class.getResourceAsStream("/info.properties");
+        inputStream = App.class.getResourceAsStream("/conf-prod/info.properties");
       
 			proprietes.load(inputStream);
 		} catch (IOException e) {
@@ -40,6 +40,7 @@ public class App
         System.out.println ("version java " + proprietes.getProperty("fr.papounworld.versionJava"));
         System.out.println ("variable environnement JAVA_HOME " + proprietes.getProperty("fr.papounworld.variableEnvironnementJAVA_HOME"));
         System.out.println ("variable environnement MAVEN_HOME " + proprietes.getProperty("fr.papounworld.variableEnvironnementMAVEN_HOME"));
+
         
         
     }
